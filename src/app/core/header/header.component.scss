@@ -1,0 +1,21 @@
+
+header {
+  height: 90px;
+  padding: 5px;
+  background-color: #d3e3ff;
+}
+
+.logo {
+  width: 80px;
+  filter: brightness(0) saturate(100%) invert(11%) sepia(99%) saturate(478%) hue-rotate(165deg) brightness(93%) contrast(109%);
+  float: left;
+  //border: 1px solid red;
+}
+
+.logo-text {
+  width: auto;
+  float: left;
+  margin-left: 20px;
+  font-family: "Source Sans Pro", serif;
+  color:#001c39;
+}

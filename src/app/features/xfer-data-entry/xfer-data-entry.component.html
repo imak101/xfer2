@@ -1,0 +1,34 @@
+<div class="main-card">
+  <i class="date">{{ formatDate() }}</i>
+
+  <div class="user-input">
+    <img class="icon" src="assets/phone_in_talk.svg" alt="phone icon">
+    <span class="user-input-text">{{entry.callsTaken}} calls taken</span>
+  </div>
+
+  <div class="user-input">
+    <img class="icon" src="assets/swap_horiz.svg" alt="transfer icon">
+    <span class="user-input-text">{{entry.callsXfer}} calls transferred</span>
+  </div>
+
+  <div class="calculated-results">
+    <div class="xfer-percent">
+      <span> {{ callsXferPercent() }}%<br>transferred</span>
+    </div>
+
+    <div class="is-passing">
+      @if (callsXferPercent() <= 27.00) {
+        <div class="is-passing-result">
+          <img class="is-passing-icon" src="assets/star.svg" width="53" alt="is passing"/>
+          <span class="is-passing-text">Above<br>LevelUp!</span>
+        </div>
+      }
+      @else {
+        <div class="not-passing-result">
+          <img src="assets/not_passing.svg" width="53" alt="not passing"/>
+          <span class="not-passing-text">Under<br>LevelUp</span>
+        </div>
+      }
+    </div>
+  </div>
+</div>

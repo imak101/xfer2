@@ -1,0 +1,58 @@
+.form-card .form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  box-shadow: 0 3px 8px 0 rgba(109, 86, 119, 1);
+  border-radius: 10px;
+
+  background-color: #f6d9ff;
+  color: #261430;
+  gap: 15px;
+  font-size: 25px;
+  padding: 25px;
+}
+
+input {
+  background-color: #6d5677;
+  color: #ffffff;
+  border-radius: 20px;
+  text-align: center;
+
+  border: none;
+  font-size: 16pt;
+  font-family: Inter, sans-serif;
+  //margin-bottom: 15px;
+  padding: 10px;
+  width: 65%;
+}
+
+// remove arrows on number input
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.plus-one {
+  background-color: #545f71;
+  //padding-left: 20px;
+  //padding-right: 20px;
+  width: 20%;
+  border: none;
+  align-self: stretch;
+  border-radius: 20px;
+
+  font-family: Inter, sans-serif;
+}
+
+.input-cluster {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  align-items: start;
+}

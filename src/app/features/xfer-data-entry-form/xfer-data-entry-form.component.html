@@ -1,0 +1,28 @@
+<div class="form-card">
+  <form class="form" [formGroup]="xferDataForm">
+    <label for="calls-taken">
+      <span>
+        How many <b>calls</b> have you taken today?
+      </span>
+    </label>
+    <div class="input-cluster">
+      <input id="calls-taken" type="number" [min]="0" formControlName="callsTaken">
+      <button class="plus-one"
+              (mouseup)="this.xferDataForm.controls.callsTaken.setValue(this.xferDataForm.controls.callsTaken.value! + 1, {emitEvent: true})">
+        <img src="assets/plus_one.svg" alt="plus one">
+      </button>
+    </div>
+
+    <label for="calls-xfer">
+      <span>
+        How many of which have you <b>transferred</b>?
+      </span>
+    </label>
+    <div class="input-cluster">
+      <input id="calls-xfer" type="number" [min]="0" formControlName="callsXfer">
+      <button class="plus-one">
+        <img src="assets/plus_one.svg" alt="plus one">
+      </button>
+    </div>
+  </form>
+</div>
