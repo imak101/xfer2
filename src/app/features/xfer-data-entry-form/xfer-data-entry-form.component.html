@@ -6,9 +6,8 @@
       </span>
     </label>
     <div class="input-cluster">
-      <input id="calls-taken" type="number" [min]="0" formControlName="callsTaken">
-      <button class="plus-one"
-              (mouseup)="this.xferDataForm.controls.callsTaken.setValue(this.xferDataForm.controls.callsTaken.value! + 1, {emitEvent: true})">
+      <input id="calls-taken" type="number" min="0" (input)="onValueChanged()" formControlName="callsTaken">
+      <button class="plus-one" (mouseup)="addOneTo('callsTaken')">
         <img src="assets/plus_one.svg" alt="plus one">
       </button>
     </div>
@@ -19,8 +18,8 @@
       </span>
     </label>
     <div class="input-cluster">
-      <input id="calls-xfer" type="number" [min]="0" formControlName="callsXfer">
-      <button class="plus-one">
+      <input id="calls-xfer" type="number" min="0" (input)="onValueChanged()" formControlName="callsXfer">
+      <button class="plus-one" (mouseup)="addOneTo('callsXfer')">
         <img src="assets/plus_one.svg" alt="plus one">
       </button>
     </div>

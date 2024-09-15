@@ -2,13 +2,15 @@ import { Component } from '@angular/core';
 import {XferDataEntryComponent} from "../xfer-data-entry/xfer-data-entry.component";
 import {XferDataEntry} from "../../shared/interfaces/xfer-data-entry";
 import {XferDataEntryFormComponent} from "../xfer-data-entry-form/xfer-data-entry-form.component";
+import {DataEntryFeedbackComponent} from "../data-entry-feedback/data-entry-feedback.component";
 
 @Component({
   selector: 'xfer2-today',
   standalone: true,
   imports: [
     XferDataEntryComponent,
-    XferDataEntryFormComponent
+    XferDataEntryFormComponent,
+    DataEntryFeedbackComponent
   ],
   templateUrl: './today.component.html',
   styleUrl: './today.component.scss'

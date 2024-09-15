@@ -33,8 +33,13 @@ export class XferDataEntryComponent {
     return dateObj.toLocaleDateString('en-us', {month: "long", day: "numeric"}) + getSuffix(dateObj.getDate());
   }
 
-  callsXferPercent(): number {
+  // Returns null if result is NaN or Infinity
+  callsXferPercent(): number | null {
     const percent = (this.entry.callsXfer / this.entry.callsTaken) * 100;
+    if (!Number.isFinite(percent)) {
+      return null;
+    }
+
     return Math.round(percent * 100) / 100;
   }
 

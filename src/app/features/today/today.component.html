@@ -1,5 +1,8 @@
 <div class="today-container">
-  <p>today works!</p>
-  <xfer2-xfer-data-entry-form/>
-  <xfer2-xfer-data-entry [entry]="sample"/>
+  <xfer2-xfer-data-entry-form class="input" (valueChanged)="sample = $event"/>
+
+  <div class="result">
+    <xfer2-data-entry-feedback [entry]="sample"/>
+    <xfer2-xfer-data-entry [entry]="sample"/>
+  </div>
 </div>

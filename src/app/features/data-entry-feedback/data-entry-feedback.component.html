@@ -1,0 +1,12 @@
+<div class="feedback-container">
+  @if (callsNeededForLevelUp() !== 0) {
+    <div class="feedback-negative">
+      <span>You need to take <b>{{callsNeededForLevelUp()}}</b> more call@if (callsNeededForLevelUp() !== 1){s} <b> without transferring</b> to achieve LevelUp today.  </span>
+    </div>
+  }
+  @else {
+    <div class="feedback-positive">
+      <span> {{getPositivePhrase()}} </span>
+    </div>
+  }
+</div>
