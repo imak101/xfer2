@@ -1,15 +1,26 @@
 .today-container {
   display: flex;
   flex-direction: column;
-  //align-items: center;
+  align-items: stretch;
   justify-content: center;
-  gap: 20px;
-  padding: 100px;
+
+  //padding: 100px;
+  padding-top: 30px;
+  //padding-left: 100px;
+  //padding-right: 100px;
 }
 
 //.input {
 //  align-self: center;
 //}
+
+.cluster {
+  margin-left: 10%;
+  margin-right: 10%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 
 .result {
   display: flex;
@@ -17,19 +28,3 @@
   justify-items: center;
   gap: 20px;
 }
-
-//xfer2-xfer-data-entry {
-//  width: 70%;
-//}
-//
-//xfer2-xfer-data-entry-form {
-//  width: 70%;
-//
-//}
-//
-//xfer2-data-entry-feedback {
-//  width: 70%;
-//
-//}
-
-

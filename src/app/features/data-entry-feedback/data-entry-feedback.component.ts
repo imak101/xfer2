@@ -17,12 +17,10 @@ export class DataEntryFeedbackComponent {
     "Excellent!",
     "One call at a time.",
     "Thank you for all you do!",
-    // "Your numbers are great!",
   ]
 
   getPositivePhrase(): string {
     const randomIndex = Math.random() * (this.positivePhrases.length) + 1;
-    console.log(Math.trunc(randomIndex - 1))
     return this.positivePhrases[Math.trunc(randomIndex - 1)]
 }
 

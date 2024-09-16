@@ -17,7 +17,7 @@ export class XferDataEntryFormComponent {
     callsTaken: new FormControl(0),
     callsXfer: new FormControl(0),
   });
-  private date: string;
+  private readonly date: string;
 
   constructor() {
     this.date = new Date().toLocaleDateString( 'us-en', {month: "2-digit", day: "2-digit", year: "2-digit"})
@@ -30,7 +30,7 @@ export class XferDataEntryFormComponent {
   }
 
   onValueChanged() {
-    const payload = {
+    const payload: XferDataEntry = {
       date: this.date,
       // input cannot be decimal
       callsTaken: Math.trunc(this.xferDataForm.controls.callsTaken.value ?? 0),

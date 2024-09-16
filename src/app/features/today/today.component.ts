@@ -19,7 +19,7 @@ export class TodayComponent {
   sample: XferDataEntry;
 
   constructor() {
-    this.sample = {callsTaken: 30, callsXfer: 10, date: '9.10.24'}
+    this.sample = {callsTaken: 0, callsXfer: 0, date: new Date().toLocaleDateString( 'us-en', {month: "2-digit", day: "2-digit", year: "2-digit"})}
   }
 
 }
