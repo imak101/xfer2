@@ -1,1 +1,5 @@
-<p>history works!</p>
+<div>
+  @for (data of this.database.getAllEntries() | async; track sample) {
+    <xfer2-xfer-data-entry [entry]="data"/>
+  }
+</div>

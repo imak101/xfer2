@@ -2,6 +2,10 @@ import {Component, EventEmitter, Output} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {XferDataEntry} from "../../shared/interfaces/xfer-data-entry";
+import {XferDatabaseService} from "../../shared/services/xfer-database.service";
+
+import {Store} from "@ngrx/store";
+import {formValueChanged} from "../../shared/state/form/xfer-data-entry-form.actions";
 
 @Component({
   selector: 'xfer2-xfer-data-entry-form',
@@ -19,7 +23,7 @@ export class XferDataEntryFormComponent {
   });
   private readonly date: string;
 
-  constructor() {
+  constructor(private store: Store) {
     this.date = new Date().toLocaleDateString( 'us-en', {month: "2-digit", day: "2-digit", year: "2-digit"})
   }
 
@@ -42,6 +46,7 @@ export class XferDataEntryFormComponent {
       return
     }
 
+    this.store.dispatch(formValueChanged({entry: payload}))
     this.valueChanged.emit(payload);
   }
 }
