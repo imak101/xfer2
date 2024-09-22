@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {XferDataEntry} from "../interfaces/xfer-data-entry";
 import {map, Observable} from "rxjs";
@@ -11,16 +11,15 @@ export class XferDatabaseService {
 
   constructor(private http: HttpClient) { }
 
-  getAllEntries(): any {
+  getAllEntries(): Observable<XferDataEntry[]> {
     return this.http.get(this.path, {
       params: {user: "imak101"}
     }).pipe(
       map((data) => {
-        const x = JSON.parse(data as string);
-        console.log(x)
-        return data;
+        console.log(data as XferDataEntry[]);
+        return data as XferDataEntry[];
       })
-    ).subscribe();
+    );
   }
 
   saveEntry(entry: XferDataEntry) {

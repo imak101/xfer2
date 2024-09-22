@@ -1,9 +1,5 @@
 .tab-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  width: min-content;
 
   border-radius: 200px;
 
@@ -20,8 +16,6 @@
 }
 
 .tab-button {
-  //background: #f8f9ff;
-
   background-color: #d3e3ff;
   color: #191c25;
   font-family: Inter, sans-serif;

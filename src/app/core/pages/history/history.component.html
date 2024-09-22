@@ -1,5 +1,10 @@
-<div>
-  @for (data of this.database.getAllEntries() | async; track sample) {
-    <xfer2-xfer-data-entry [entry]="data"/>
+<div class="history-container">
+<!--  <button (mouseup)="test()">test</button>-->
+
+  @for (data of sample; track data.date) {
+    <xfer2-xfer-data-entry class="history-entry" [entry]="data"/>
+  }
+  @empty {
+    <div>There's nothing to show.</div>
   }
 </div>

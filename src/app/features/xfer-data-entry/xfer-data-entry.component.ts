@@ -29,7 +29,7 @@ export class XferDataEntryComponent {
       }
     };
 
-    const dateObj = new Date(this.entry.date.replaceAll('.', '/'));
+    const dateObj = new Date(this.entry.date.replaceAll('-', '/'));
     return dateObj.toLocaleDateString('en-us', {month: "long", day: "numeric"}) + getSuffix(dateObj.getDate());
   }
 

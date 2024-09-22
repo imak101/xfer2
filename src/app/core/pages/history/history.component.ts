@@ -16,6 +16,12 @@ import {AsyncPipe} from "@angular/common";
 })
 export class HistoryComponent {
   constructor(protected database: XferDatabaseService) {
+    this.database.getAllEntries().subscribe(data => this.sample = data)
+  }
+
+  test() {
+    const x = this.database.getAllEntries().subscribe();
+    console.log(x)
   }
 
   sample: XferDataEntry[] = [
