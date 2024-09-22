@@ -13,10 +13,10 @@ export class XferDatabaseService {
 
   getAllEntries(): Observable<XferDataEntry[]> {
     return this.http.get(this.path, {
+      // todo: add multi user support
       params: {user: "imak101"}
     }).pipe(
       map((data) => {
-        console.log(data as XferDataEntry[]);
         return data as XferDataEntry[];
       })
     );

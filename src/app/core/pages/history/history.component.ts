@@ -1,8 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {XferDataEntry} from "../../../shared/interfaces/xfer-data-entry";
 import {XferDataEntryComponent} from "../../../features/xfer-data-entry/xfer-data-entry.component";
-import {XferDatabaseService} from "../../../shared/services/xfer-database.service";
+
 import {AsyncPipe} from "@angular/common";
+import {Store} from "@ngrx/store";
+import {Observable} from "rxjs";
+import {selectAllHistory} from "../../../shared/state/history/history.selectors";
+import {getHistory} from "../../../shared/state/history/history.actions";
+import {AppState} from "../../../shared/state/app.state";
 
 @Component({
   selector: 'xfer2-history',
@@ -14,17 +19,12 @@ import {AsyncPipe} from "@angular/common";
   templateUrl: './history.component.html',
   styleUrl: './history.component.scss'
 })
-export class HistoryComponent {
-  constructor(protected database: XferDatabaseService) {
-    this.database.getAllEntries().subscribe(data => this.sample = data)
-  }
+export class HistoryComponent  {
+  history$: Observable<XferDataEntry[]>;
 
-  test() {
-    const x = this.database.getAllEntries().subscribe();
-    console.log(x)
+  constructor(private store: Store<AppState>) {
+    // get history from database
+    this.history$ = this.store.select(selectAllHistory);
+    this.store.dispatch(getHistory())
   }
-
-  sample: XferDataEntry[] = [
-    {callsTaken: 10, callsXfer: 20, date: '23'}, {callsTaken: 45, callsXfer: 465, date: '465165'}, {callsTaken: 415410, callsXfer: 2440, date: '14853'}
-  ]
 }

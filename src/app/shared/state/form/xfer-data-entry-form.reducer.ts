@@ -17,6 +17,6 @@ export const initialState: XferDataEntryFormState = {
 export const formReducer = createReducer(
   initialState,
   on(formValueChanged, (state, { entry }) => ({
-    ...entry
+    today: entry
   }))
 )

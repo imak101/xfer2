@@ -1,8 +1,6 @@
 <div class="history-container">
-<!--  <button (mouseup)="test()">test</button>-->
-
-  @for (data of sample; track data.date) {
-    <xfer2-xfer-data-entry class="history-entry" [entry]="data"/>
+  @for (entry of history$ | async; track entry.date) {
+    <xfer2-xfer-data-entry class="history-entry" [entry]="entry"/>
   }
   @empty {
     <div>There's nothing to show.</div>

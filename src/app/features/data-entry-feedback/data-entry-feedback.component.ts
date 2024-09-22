@@ -26,6 +26,11 @@ export class DataEntryFeedbackComponent {
 
   callsNeededForLevelUp(): number {
     let callsNeeded = 0;
+
+    // take current call count and add one call.
+    // calculate transfer percentage.
+    // if new call count is under 27% transferred, user needs to take [callsNeeded] amount of calls to reach KPI.
+    // else, loop.
     while (true) {
       let newPercentXfer = (this.entry.callsXfer / (this.entry.callsTaken + callsNeeded) * 100);
       if ( (Math.round(newPercentXfer * 100) / 100) < 27) {
