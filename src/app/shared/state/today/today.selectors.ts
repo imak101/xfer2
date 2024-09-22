@@ -1,8 +1,8 @@
 import {createSelector} from '@ngrx/store'
 import {AppState} from "../app.state";
 
-export const selectFormState = (state: AppState) => state.formState;
+export const selectTodayState = (state: AppState) => state.todayState;
 export const selectToday = createSelector(
-  selectFormState,
-
+  selectTodayState,
+  (state) => state.today
 )

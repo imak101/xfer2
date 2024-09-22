@@ -5,3 +5,8 @@ export const getHistorySuccess = createAction(
   '[Xfer Database Service] Get History Success',
   props<{history: XferDataEntry[]}>(),
 )
+
+export const getTodaySuccess = createAction(
+  '[Xfer Database Service] Get Today\'s entry Success',
+  props<{today: XferDataEntry}>(),
+)

@@ -1,11 +1,12 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {XferDataEntry} from "../../shared/interfaces/xfer-data-entry";
 import {XferDatabaseService} from "../../shared/services/xfer-database.service";
 
 import {Store} from "@ngrx/store";
-import {formValueChanged} from "../../shared/state/form/xfer-data-entry-form.actions";
+import {formValueChanged} from "../../shared/state/today/today.actions";
+import {AppState} from "../../shared/state/app.state";
 
 @Component({
   selector: 'xfer2-xfer-data-entry-form',
@@ -14,17 +15,22 @@ import {formValueChanged} from "../../shared/state/form/xfer-data-entry-form.act
   templateUrl: './xfer-data-entry-form.component.html',
   styleUrl: './xfer-data-entry-form.component.scss'
 })
-export class XferDataEntryFormComponent {
-  @Output() valueChanged = new EventEmitter<XferDataEntry>();
+export class XferDataEntryFormComponent implements OnInit {
+  @Input() initialEntry!: XferDataEntry
 
   xferDataForm = new FormGroup({
-    callsTaken: new FormControl(0),
-    callsXfer: new FormControl(0),
-  });
-  private readonly date: string;
+      callsTaken: new FormControl(),
+      callsXfer: new FormControl(),
+    });
+  private date!: string;
 
-  constructor(private store: Store) {
-    this.date = new Date().toLocaleDateString( 'us-en', {month: "2-digit", day: "2-digit", year: "2-digit"})
+  constructor(private store: Store<AppState>) {
+  }
+
+  ngOnInit() {
+    this.xferDataForm.controls.callsXfer.setValue(this.initialEntry.callsXfer);
+    this.xferDataForm.controls.callsTaken.setValue(this.initialEntry.callsTaken);
+    this.date = this.initialEntry.date;
   }
 
   addOneTo(controlName: string) {
@@ -37,8 +43,8 @@ export class XferDataEntryFormComponent {
     const payload: XferDataEntry = {
       date: this.date,
       // input cannot be decimal
-      callsTaken: Math.trunc(this.xferDataForm.controls.callsTaken.value ?? 0),
-      callsXfer: Math.trunc(this.xferDataForm.controls.callsXfer.value ?? 0),
+      callsTaken: Math.trunc(this.xferDataForm.controls['callsTaken'].value ?? 0),
+      callsXfer: Math.trunc(this.xferDataForm.controls['callsXfer'].value ?? 0),
     }
 
     // blocks out from updating if input number is negative
@@ -47,6 +53,5 @@ export class XferDataEntryFormComponent {
     }
 
     this.store.dispatch(formValueChanged({entry: payload}))
-    this.valueChanged.emit(payload);
   }
 }

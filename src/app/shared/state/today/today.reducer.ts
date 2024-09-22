@@ -1,12 +1,12 @@
 import {XferDataEntry} from "../../interfaces/xfer-data-entry";
 import {createReducer, on} from "@ngrx/store";
-import {formValueChanged} from "./xfer-data-entry-form.actions";
+import {formValueChanged} from "./today.actions";
 
-export interface XferDataEntryFormState {
+export interface TodayState {
   today: XferDataEntry
 }
 
-export const initialState: XferDataEntryFormState = {
+export const initialState: TodayState = {
   today: {
     callsTaken: 0,
     callsXfer: 0,
@@ -14,7 +14,7 @@ export const initialState: XferDataEntryFormState = {
   }
 }
 
-export const formReducer = createReducer(
+export const todayReducer = createReducer(
   initialState,
   on(formValueChanged, (state, { entry }) => ({
     today: entry

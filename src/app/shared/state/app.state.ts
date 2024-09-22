@@ -1,7 +1,7 @@
-import {XferDataEntryFormState} from "./form/xfer-data-entry-form.reducer";
+import {TodayState} from "./today/today.reducer";
 import {HistoryState} from "./history/history.reducer";
 
 export interface AppState {
-  formState: XferDataEntryFormState;
+  todayState: TodayState;
   historyState: HistoryState;
 }
