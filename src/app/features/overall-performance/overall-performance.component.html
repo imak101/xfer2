@@ -1,0 +1,19 @@
+<div class="performance-container">
+  <div>
+    Total Calls Taken: {{this.getTotalCallsTaken()}}
+  </div>
+  <div>
+    Total Transferred: {{this.getTotalCallsXfer()}}
+  </div>
+  <div>
+    Overall Transfer Rate: {{this.getOverallXferRate() ?? 'Unknown'}}%
+  </div>
+  <div class="icon">
+    @if ((getOverallXferRate() ?? 100) <= 27.00) {
+      <img class="is-passing-icon" src="assets/star.svg" width="60" alt="is passing"/>
+    } @else {
+      <img src="assets/not_passing.svg" width="60" alt="not passing"/>
+    }
+  </div>
+</div>
+

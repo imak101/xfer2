@@ -1,8 +1,15 @@
-<div class="history-container">
-  @for (entry of history$ | async; track entry.date) {
-    <xfer2-xfer-data-entry class="history-entry" [entry]="entry"/>
-  }
-  @empty {
-    <div>There's nothing to show.</div>
-  }
+<div class="history-container" *ngIf="(history$ | async) as history">
+  <div class="performance">
+    <xfer2-overall-performance class="performance" [entries]="history"/>
+  </div>
+
+  <div class="entries">
+    @for (entry of history; track entry.date) {
+      <xfer2-xfer-data-entry class="history-entry" [entry]="entry"/>
+    }
+    @empty {
+      <div>There's nothing to show.</div>
+    }
+  </div>
+
 </div>

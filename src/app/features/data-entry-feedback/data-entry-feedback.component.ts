@@ -28,7 +28,6 @@ export class DataEntryFeedbackComponent {
   private _positivePhrase: string = "";
   private _phraseCounter: number = 0;
   get positivePhrase(): string {
-    console.log(this._phraseCounter);
     if (this._phraseCounter == 4) {
       this._positivePhrase = this.getPositivePhrase();
       this._phraseCounter = 0;

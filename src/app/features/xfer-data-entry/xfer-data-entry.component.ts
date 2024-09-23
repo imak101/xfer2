@@ -11,9 +11,6 @@ import {XferDataEntry} from "../../shared/interfaces/xfer-data-entry";
 export class XferDataEntryComponent {
   @Input({required: true}) entry!: XferDataEntry;
 
-  constructor() {
-  }
-
   formatDate(): string {
     let getSuffix = (date: number): string => {
       if (date > 3 && date < 21) return "th";

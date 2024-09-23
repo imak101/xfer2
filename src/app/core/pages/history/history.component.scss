@@ -1,12 +1,26 @@
 .history-container {
   display: flex;
-  padding: 30px;
-  justify-content: center;
+  flex-direction: column;
+  padding: 15px;
   flex-wrap: wrap;
+}
+
+.entries {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .history-entry {
   padding: 20px;
+  width: 30%;
+  min-width: 350px;
+}
+
+.performance {
+  align-self: center;
+  padding: 8px;
   width: 30%;
   min-width: 350px;
 }
