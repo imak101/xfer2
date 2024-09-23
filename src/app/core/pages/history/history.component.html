@@ -1,0 +1,8 @@
+<div class="history-container">
+  @for (entry of history$ | async; track entry.date) {
+    <xfer2-xfer-data-entry class="history-entry" [entry]="entry"/>
+  }
+  @empty {
+    <div>There's nothing to show.</div>
+  }
+</div>

@@ -13,19 +13,24 @@ export class DataEntryFeedbackComponent {
 
   private positivePhrases: string[] = [
     "You are doing great!",
-    "Keep up the good work!",
-    "Excellent!",
-    "One call at a time.",
-    "Thank you for all you do!",
-  ]
+    // "Keep up the good work!",
+    // "Excellent!",
+    // "One call at a time.",
+    // "Thank you for all you do!",
+  ];
 
-  getPositivePhrase(): string {
+  getPositivePhrase(): string { // fixme
     const randomIndex = Math.random() * (this.positivePhrases.length) + 1;
-    return this.positivePhrases[Math.trunc(randomIndex - 1)]
-}
+    return this.positivePhrases[Math.trunc(randomIndex - 1)];
+  }
 
   callsNeededForLevelUp(): number {
     let callsNeeded = 0;
+
+    // take current call count and add one call.
+    // calculate transfer percentage.
+    // if new call count is under 27% transferred, user needs to take [callsNeeded] amount of calls to reach KPI.
+    // else, loop.
     while (true) {
       let newPercentXfer = (this.entry.callsXfer / (this.entry.callsTaken + callsNeeded) * 100);
       if ( (Math.round(newPercentXfer * 100) / 100) < 27) {

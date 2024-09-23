@@ -3,6 +3,12 @@ import {XferDataEntryComponent} from "../../../features/xfer-data-entry/xfer-dat
 import {XferDataEntry} from "../../../shared/interfaces/xfer-data-entry";
 import {XferDataEntryFormComponent} from "../../../features/xfer-data-entry-form/xfer-data-entry-form.component";
 import {DataEntryFeedbackComponent} from "../../../features/data-entry-feedback/data-entry-feedback.component";
+import {Store} from "@ngrx/store";
+import {AppState} from "../../../shared/state/app.state";
+import {Observable} from "rxjs";
+import {selectToday} from "../../../shared/state/today/today.selectors";
+import {AsyncPipe, NgIf} from "@angular/common";
+import {getTodayFromDatabase} from "../../../shared/state/today/today.actions";
 
 @Component({
   selector: 'xfer2-today',
@@ -10,16 +16,18 @@ import {DataEntryFeedbackComponent} from "../../../features/data-entry-feedback/
   imports: [
     XferDataEntryComponent,
     XferDataEntryFormComponent,
-    DataEntryFeedbackComponent
+    DataEntryFeedbackComponent,
+    AsyncPipe,
+    NgIf
   ],
   templateUrl: './today.component.html',
   styleUrl: './today.component.scss'
 })
 export class TodayComponent {
-  sample: XferDataEntry;
+  todaysEntry$: Observable<XferDataEntry>;
 
-  constructor() {
-    this.sample = {callsTaken: 0, callsXfer: 0, date: new Date().toLocaleDateString( 'us-en', {month: "2-digit", day: "2-digit", year: "2-digit"})}
+  constructor(private store: Store<AppState>) {
+    this.store.dispatch(getTodayFromDatabase());
+    this.todaysEntry$ = this.store.select(selectToday);
   }
-
 }

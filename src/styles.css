@@ -3,3 +3,13 @@ body {
   background: #f8f9ff;
   font-family: Inter, serif;
 }
+
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-picker {
+  align-self: center;
+  margin-top: 25px;
+}

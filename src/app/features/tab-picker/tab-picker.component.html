@@ -1,0 +1,17 @@
+<div class="tab-container">
+  <span class="tabs">
+    <button [routerLink]="['/today']"
+            [ngClass]="{'active': currentTab === 'today'}"
+            (mouseup)="currentTab = 'today'"
+            class="tab-button">
+      Today
+    </button>
+
+    <button [routerLink]="['/history']"
+            [ngClass]="{'active': currentTab === 'history'}"
+            (mouseup)="currentTab = 'history'"
+            class="tab-button">
+      History
+    </button>
+  </span>
+</div>

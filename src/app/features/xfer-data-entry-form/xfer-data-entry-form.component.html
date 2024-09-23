@@ -6,7 +6,7 @@
       </span>
     </label>
     <div class="input-cluster">
-      <input id="calls-taken" type="number" min="0" (input)="onValueChanged()" formControlName="callsTaken">
+      <input id="calls-taken" type="number" min="0" (input)="onValueChangedFor('callsTaken')" formControlName="callsTaken" value="{{initialEntry.callsTaken}}" >
       <button class="plus-one" (mouseup)="addOneTo('callsTaken')">
         <img src="assets/plus_one.svg" alt="plus one">
       </button>
@@ -18,7 +18,7 @@
       </span>
     </label>
     <div class="input-cluster">
-      <input id="calls-xfer" type="number" min="0" (input)="onValueChanged()" formControlName="callsXfer">
+      <input id="calls-xfer" type="number" min="0" (input)="onValueChangedFor('callsXfer')" formControlName="callsXfer" [valueAsNumber]="initialEntry.callsXfer">
       <button class="plus-one" (mouseup)="addOneTo('callsXfer')">
         <img src="assets/plus_one.svg" alt="plus one">
       </button>

@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import {TodayComponent} from "./core/pages/today/today.component";
+import {HistoryComponent} from "./core/pages/history/history.component";
 
 export const routes: Routes = [
   {
@@ -10,6 +11,9 @@ export const routes: Routes = [
   {
     path: 'today',
     component: TodayComponent,
-    // title: 'Today'
+  },
+  {
+    path: 'history',
+    component: HistoryComponent,
   }
 ];
