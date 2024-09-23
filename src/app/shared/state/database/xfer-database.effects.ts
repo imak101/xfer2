@@ -31,20 +31,6 @@ export class XferDatabaseEffects {
       )
     );
 
-    // this.getToday$ = createEffect(() =>
-    //   this.actions$.pipe(
-    //     ofType(getTodayFromDatabase),
-    //     withLatestFrom(this.store.select(selectToday)),
-    //     switchMap(([action, todayLatest]) =>
-    //       from(this.database.getAllEntries()).pipe(
-    //         map((data) => getTodaySuccess({
-    //           today: data.reverse()[0].date !== todayLatest.date.replaceAll('/', '-')? todayLatest : data.reverse()[0]
-    //         }))
-    //       )
-    //     )
-    //   )
-    // );
-
     this.getToday$ = createEffect(() =>
       this.actions$.pipe(
         ofType(getTodayFromDatabase),

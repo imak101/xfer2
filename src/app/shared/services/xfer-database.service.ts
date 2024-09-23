@@ -7,8 +7,8 @@ import {map, Observable} from "rxjs";
   providedIn: 'root'
 })
 export class XferDatabaseService {
-  private path = "http://127.0.0.1:5001/groupscrobbler/us-central1/xfer2";
-  // private path = "https://xfer2-tbxfifckza-uc.a.run.app"
+  // private path = "http://127.0.0.1:5001/groupscrobbler/us-central1/xfer2";
+  private path = "https://xfer2-tbxfifckza-uc.a.run.app";
 
   constructor(private http: HttpClient) { }
 
