@@ -1,8 +1,7 @@
-import {Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {XferDataEntry} from "../../shared/interfaces/xfer-data-entry";
-import {XferDatabaseService} from "../../shared/services/xfer-database.service";
 
 import {Store} from "@ngrx/store";
 import {formValueChanged} from "../../shared/state/today/today.actions";
@@ -16,7 +15,7 @@ import {AppState} from "../../shared/state/app.state";
   styleUrl: './xfer-data-entry-form.component.scss'
 })
 export class XferDataEntryFormComponent implements OnInit {
-  @Input() initialEntry!: XferDataEntry
+  @Input() initialEntry!: XferDataEntry;
 
   xferDataForm = new FormGroup({
       callsTaken: new FormControl(),
@@ -33,25 +32,43 @@ export class XferDataEntryFormComponent implements OnInit {
     this.date = this.initialEntry.date;
   }
 
-  addOneTo(controlName: string) {
-    const control = this.xferDataForm.get(controlName)!;
-    control.setValue(control.value + 1);
-    this.onValueChanged();
+  addOneTo(controlName: "callsTaken" | "callsXfer") {
+    let xfer = this.initialEntry.callsXfer;
+    let taken = this.initialEntry.callsTaken;
+
+    if (controlName == "callsTaken") {
+      taken += 1;
+    } else {
+      xfer += 1;
+    }
+
+    this.store.dispatch(formValueChanged({entry: this.makePayload(taken, xfer)}));
   }
 
-  onValueChanged() {
-    const payload: XferDataEntry = {
-      date: this.date,
-      // input cannot be decimal
-      callsTaken: Math.trunc(this.xferDataForm.controls['callsTaken'].value ?? 0),
-      callsXfer: Math.trunc(this.xferDataForm.controls['callsXfer'].value ?? 0),
-    }
+  onValueChangedFor(inputName: "callsTaken" | "callsXfer") {
+    let xfer = this.initialEntry.callsXfer;
+    let taken = this.initialEntry.callsTaken;
 
     // blocks out from updating if input number is negative
     if (this.xferDataForm.invalid) {
-      return
+      return;
     }
 
-    this.store.dispatch(formValueChanged({entry: payload}))
+    if (inputName === "callsTaken") {
+      taken = this.xferDataForm.controls.callsTaken.value;
+    } {
+      xfer = this.xferDataForm.controls.callsXfer.value;
+    }
+
+    this.store.dispatch(formValueChanged({entry: this.makePayload(taken, xfer)}));
+  }
+
+  private makePayload(callsTaken: number, callsXfer: number): XferDataEntry {
+    return {
+      date: this.initialEntry.date,
+      // input cannot be decimal
+      callsTaken: Math.trunc(callsTaken),
+      callsXfer: Math.trunc(callsXfer),
+    };
   }
 }

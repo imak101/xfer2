@@ -5,4 +5,4 @@ export const selectTodayState = (state: AppState) => state.todayState;
 export const selectToday = createSelector(
   selectTodayState,
   (state) => state.today
-)
+);

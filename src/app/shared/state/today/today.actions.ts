@@ -4,6 +4,8 @@ import {XferDataEntry} from "../../interfaces/xfer-data-entry";
 export const formValueChanged = createAction(
   '[XferDataEntryForm] Value Changed',
   props<{entry: XferDataEntry}>(),
-)
+);
 
-export const getToday = createAction('[Today Page] Load today\'s entry')
+export const getTodayFromDatabase = createAction(
+  '[Today Page] Load today\'s entry from database'
+);

@@ -8,6 +8,7 @@ import {AppState} from "../../../shared/state/app.state";
 import {Observable} from "rxjs";
 import {selectToday} from "../../../shared/state/today/today.selectors";
 import {AsyncPipe, NgIf} from "@angular/common";
+import {getTodayFromDatabase} from "../../../shared/state/today/today.actions";
 
 @Component({
   selector: 'xfer2-today',
@@ -23,9 +24,10 @@ import {AsyncPipe, NgIf} from "@angular/common";
   styleUrl: './today.component.scss'
 })
 export class TodayComponent {
-  todaysEntry$: Observable<XferDataEntry>
+  todaysEntry$: Observable<XferDataEntry>;
 
   constructor(private store: Store<AppState>) {
+    this.store.dispatch(getTodayFromDatabase());
     this.todaysEntry$ = this.store.select(selectToday);
   }
 }

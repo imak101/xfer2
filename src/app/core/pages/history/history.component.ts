@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {XferDataEntry} from "../../../shared/interfaces/xfer-data-entry";
 import {XferDataEntryComponent} from "../../../features/xfer-data-entry/xfer-data-entry.component";
 
@@ -25,6 +25,6 @@ export class HistoryComponent  {
   constructor(private store: Store<AppState>) {
     // get history from database
     this.history$ = this.store.select(selectAllHistory);
-    this.store.dispatch(getHistory())
+    this.store.dispatch(getHistory());
   }
 }

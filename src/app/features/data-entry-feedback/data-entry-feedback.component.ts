@@ -13,16 +13,16 @@ export class DataEntryFeedbackComponent {
 
   private positivePhrases: string[] = [
     "You are doing great!",
-    "Keep up the good work!",
-    "Excellent!",
-    "One call at a time.",
-    "Thank you for all you do!",
-  ]
+    // "Keep up the good work!",
+    // "Excellent!",
+    // "One call at a time.",
+    // "Thank you for all you do!",
+  ];
 
-  getPositivePhrase(): string {
+  getPositivePhrase(): string { // fixme
     const randomIndex = Math.random() * (this.positivePhrases.length) + 1;
-    return this.positivePhrases[Math.trunc(randomIndex - 1)]
-}
+    return this.positivePhrases[Math.trunc(randomIndex - 1)];
+  }
 
   callsNeededForLevelUp(): number {
     let callsNeeded = 0;

@@ -8,7 +8,7 @@ export interface HistoryState {
 
 export const initialState: HistoryState = {
   history: []
-}
+};
 
 export const historyReducer = createReducer(
   initialState,
@@ -16,4 +16,4 @@ export const historyReducer = createReducer(
     ...state,
     history: history
   }))
-)
+);

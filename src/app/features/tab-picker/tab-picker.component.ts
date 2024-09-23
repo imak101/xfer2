@@ -14,7 +14,7 @@ import {RouterLink} from "@angular/router";
   styleUrl: './tab-picker.component.scss'
 })
 export class TabPickerComponent {
-  currentTab: string = "today"
+  currentTab: string = "today";
 
   protected readonly history = history;
 }
