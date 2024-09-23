@@ -36,6 +36,7 @@ export class XferDataEntryFormComponent implements OnInit {
     let xfer = this.initialEntry.callsXfer;
     let taken = this.initialEntry.callsTaken;
 
+    // switch value that needs to be overridden to that opposite doesn't lose it's state
     if (controlName == "callsTaken") {
       taken += 1;
     } else {
@@ -54,9 +55,10 @@ export class XferDataEntryFormComponent implements OnInit {
       return;
     }
 
+    // switch value that needs to be overridden to that opposite doesn't lose it's state
     if (inputName === "callsTaken") {
       taken = this.xferDataForm.controls.callsTaken.value;
-    } {
+    } else {
       xfer = this.xferDataForm.controls.callsXfer.value;
     }
 
