@@ -1,0 +1,20 @@
+<dialog (cancel)="userCanceledForm()" class="username-dialog" #usernameDialog>
+  <p>Welcome to Transfer Tracker!</p>
+  <form method="dialog" (submit)="signInButtonPressed()" class="username-form" [formGroup]="usernameForm">
+    <input class="username-input" [ngClass]="{'input-error': usernameInput.invalid}" formControlName="username" id="username" type="text" placeholder="Enter username..." required>
+    <div class="error-message" *ngIf="usernameInput.invalid">
+      Must be more than 4 characters!
+    </div>
+
+    <div class="dialog-buttons">
+      <!--mark type as button because we don't want the close button to submit-->
+      <button class="dialog-button" type="button" (mouseup)="usernameDialog.close()" [hidden]="hideCloseButton">Close</button>
+      <button class="dialog-button" [disabled]="usernameInput.invalid" [ngClass]="{'disabled': usernameInput.invalid}">Sign in</button>
+    </div>
+  </form>
+</dialog>
+
+<div [title]="getTooltip()" >
+  <img class="user-icon" src="assets/person.svg" alt="user" (mouseup)="usernameDialog.showModal()">
+</div>
+

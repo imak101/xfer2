@@ -1,0 +1,71 @@
+.user-icon {
+  cursor: pointer;
+  width: 55px;
+  filter: brightness(0) saturate(100%) invert(11%) sepia(99%) saturate(478%) hue-rotate(165deg) brightness(93%) contrast(109%);
+}
+
+.username-dialog {
+  box-shadow: 0 2px 2px 0 rgba(243, 243, 250, 1);
+  scale: 1.3;
+  border: none;
+  border-radius: 10px;
+  background-color: #f3f3fa;
+}
+
+p,
+.username-form,
+.dialog-button,
+.dialog-button,
+.username-input {
+  font-family: Inter, sans-serif;
+}
+
+.username-input {
+  padding: 7px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+}
+
+.input-error {
+  background-color: #ffdad6;
+  border-color: #ba1a1a;
+  color: #410002;
+  border-style: solid;
+  border-width: 2px;
+}
+
+.username-form {
+  display: grid;
+}
+
+.dialog-buttons {
+  display: flex;
+  padding-top: 10px;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.dialog-button {
+  box-shadow: 0 1px 3px 0 rgba(68, 71, 78, 1);
+  padding: 7px;
+  border: none;
+  border-radius: 14px;
+  color: #001b3e;
+  background-color: #d6e3ff;
+  cursor: pointer;
+}
+
+.disabled {
+  cursor: not-allowed;
+  box-shadow: none;
+  color: #44474e;
+  background-color: #d9d9e0;
+}
+
+.error-message {
+  padding-top: 8px;
+  padding-right: 1px;
+  font-size: 8pt;
+  color: #ba1a1a ;
+}

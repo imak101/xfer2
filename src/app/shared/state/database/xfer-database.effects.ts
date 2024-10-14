@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {XferDatabaseService} from "../../services/xfer-database.service";
+import {XferDatabaseService} from "../../services/database/xfer-database.service";
 import {getHistory} from "../history/history.actions";
 import {from, map, switchMap, withLatestFrom} from "rxjs";
 import {getHistorySuccess, getTodaySuccess} from "./xfer-database.actions";

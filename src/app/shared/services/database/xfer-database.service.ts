@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {XferDataEntry} from "../interfaces/xfer-data-entry";
+import {XferDataEntry} from "../../interfaces/xfer-data-entry";
 import {map, Observable} from "rxjs";
+import {XferLocalStorageService} from "../local-storage/xfer-local-storage.service";
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +11,11 @@ export class XferDatabaseService {
   // private path = "http://127.0.0.1:5001/groupscrobbler/us-central1/xfer2";
   private path = "https://xfer2-tbxfifckza-uc.a.run.app";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private xferLocalStorage: XferLocalStorageService) { }
 
   getAllEntries(): Observable<XferDataEntry[]> {
     return this.http.get(this.path, {
-      // todo: add multi user support
-      params: {user: "imak101"}
+      params: {user: this.xferLocalStorage.getUsername() ?? "null"}
     }).pipe(
       map((data) => {
         return data as XferDataEntry[];
@@ -34,7 +34,7 @@ export class XferDatabaseService {
     return this.http.post(this.path,
     payload,
     {
-      params: {user: "imak101",},
+      params: {user: this.xferLocalStorage.getUsername() ?? "null"},
       headers: {"Content-Type": "application/json"}
     });
   }
