@@ -11,10 +11,14 @@
       <button class="dialog-button" type="button" (mouseup)="usernameDialog.close()" [hidden]="hideCloseButton">Close</button>
       <button class="dialog-button" [disabled]="usernameInput.invalid" [ngClass]="{'disabled': usernameInput.invalid}">Sign in</button>
     </div>
+
+    <div class="version">
+      v1.2.0
+    </div>
   </form>
 </dialog>
 
-<div [title]="getTooltip()" >
+<div [title]="getTooltip()">
   <img class="user-icon" src="assets/person.svg" alt="user" (mouseup)="usernameDialog.showModal()">
 </div>
 

@@ -18,12 +18,28 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
 
   box-shadow: 0 1px 8px 0 rgba(58, 105, 59, 1);
   font-size: 18px;
 
-
   background: #bbf0b5;
+  color: #002205;
+  border-radius: 10px;
+  padding: 30px;
+}
+
+.feedback-warning {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  box-shadow: 0 1px 8px 0 rgb(15, 107, 88);
+  font-size: 18px;
+
+  background:#a2f2d9;
+  color: #002019;
   border-radius: 10px;
   padding: 30px;
 }

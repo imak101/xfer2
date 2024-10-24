@@ -11,5 +11,5 @@ import {TabPickerComponent} from "./features/tab-picker/tab-picker.component";
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'xfer2';
+  title = 'Transfer Tracker';
 }

@@ -1,12 +1,29 @@
-<div class="feedback-container">
-  @if (callsNeededForLevelUp() !== 0) {
+@let callsNeeded = callsNeededForLevelUpWithXferOffsetOf(0);
+
+@switch (callsNeeded) {
+  @case (0) {
+    @let callsNeededWithPlusOneXfer = callsNeededForLevelUpWithXferOffsetOf(1);
+
+    @if (callsNeededWithPlusOneXfer >= 1) {
+      <div class="feedback-warning">
+        <span>
+          Caution! If you transfer your next call, you will <b>exceed 27%</b> of calls transferred.
+          <br><br>
+          Take <b>{{callsNeededWithPlusOneXfer}}</b> more call@if (callsNeededWithPlusOneXfer !== 1){s} <b> without transferring</b> to earn a transfer.
+          @if (callsNeededWithPlusOneXfer <= 2) { <br><br> {{callsNeededWithPlusOneXfer === 1? "So close!" : "Almost there..."}} }
+        </span>
+      </div>
+    }
+    @else {
+      <div class="feedback-positive">
+        <span> {{getCurrentPositivePhrase()}} </span>
+      </div>
+    }
+  }
+
+  @default {
     <div class="feedback-negative">
-      <span>You need to take <b>{{callsNeededForLevelUp()}}</b> more call@if (callsNeededForLevelUp() !== 1){s} <b> without transferring</b> to achieve LevelUp today.  </span>
+      <span> You need to take <b>{{callsNeeded}}</b> more call@if (callsNeeded !== 1){s} <b> without transferring</b> to achieve LevelUp today. </span>
     </div>
   }
-  @else {
-    <div class="feedback-positive">
-      <span> {{this.positivePhrase}} </span>
-    </div>
-  }
-</div>
+}
