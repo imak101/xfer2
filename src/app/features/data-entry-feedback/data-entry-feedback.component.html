@@ -16,7 +16,10 @@
     }
     @else {
       <div class="feedback-positive">
-        <span> {{getCurrentPositivePhrase()}} </span>
+        <span>
+          {{getCurrentPositivePhrase()}}
+          <br><br> You have <b>{{remainingXfers()}}</b> transfers remaining.
+        </span>
       </div>
     }
   }

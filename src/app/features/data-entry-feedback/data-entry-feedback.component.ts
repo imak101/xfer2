@@ -21,7 +21,8 @@ export class DataEntryFeedbackComponent {
     "Thank you for all you do!",
     "Crush those stats!",
     "Your customers are thankful for you.",
-    "Keep going!"
+    "Keep going!",
+    "Great job."
   ];
 
   private getRandomPositivePhrase(): string {
@@ -60,6 +61,17 @@ export class DataEntryFeedbackComponent {
         return callsNeeded;
       }
       callsNeeded += 1;
+    }
+  }
+
+  remainingXfers(): number {
+    let remaining: number = 1;
+    while (true) {
+      const callsNeededWithOffset = this.callsNeededForLevelUpWithXferOffsetOf(remaining);
+      if (callsNeededWithOffset > 0) {
+        return remaining;
+      }
+      remaining += 1;
     }
   }
 }
