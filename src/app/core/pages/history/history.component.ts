@@ -9,6 +9,7 @@ import {selectAllHistory} from "../../../shared/state/history/history.selectors"
 import {getHistory} from "../../../shared/state/history/history.actions";
 import {AppState} from "../../../shared/state/app.state";
 import {OverallPerformanceComponent} from "../../../features/overall-performance/overall-performance.component";
+import {ScorecardCycle} from "../../../shared/interfaces/scorecard-cycle";
 
 @Component({
   selector: 'xfer2-history',
@@ -29,5 +30,40 @@ export class HistoryComponent  {
     // get history from database
     this.history$ = this.store.select(selectAllHistory);
     this.store.dispatch(getHistory());
+  }
+
+  parseEntriesIntoCycles(entries: XferDataEntry[]): ScorecardCycle[] {
+    const cycles: ScorecardCycle[] = [];
+
+    for (const entry of entries) {
+      const dateObj = new Date(entry.date.replaceAll('-', '/'));
+      let startDate: Date;
+      let endDate: Date;
+
+      if (dateObj.getDate() >= 29) { // entry is closer towards the beginning of the cycle (29th - 31st)
+        startDate = new Date(dateObj.getFullYear(), dateObj.getMonth(), 29);
+        endDate = new Date(dateObj.getFullYear(), dateObj.getMonth() + 1, 28);
+      } else { // entry is already in next month (1st - 28th)
+        startDate = new Date(dateObj.getFullYear(), dateObj.getMonth() - 1, 29);
+        endDate = new Date(dateObj.getFullYear(), dateObj.getMonth(), 28);
+      }
+
+      const cycleIndex = cycles.findIndex((cycle, index) => cycle.start.getTime() === startDate.getTime());
+      if (cycleIndex === -1) {
+        cycles.push(
+          {
+            start: startDate,
+            end: endDate,
+            entries: [entry]
+          }
+        );
+        continue;
+      }
+
+      cycles.at(cycleIndex)!.entries.push(entry);
+    }
+
+    console.log(cycles)
+    return cycles;
   }
 }
