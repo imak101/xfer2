@@ -3,6 +3,17 @@
     <xfer2-overall-performance class="performance" [entries]="history"/>
   </div>
 
+  <div class="cycles">
+<!--    @let cycles = parseEntriesIntoCycles(history);-->
+
+    @for (cycle of parseEntriesIntoCycles(history); track cycle.start) {
+      <xfer2-scorecard-cycle [cycle]="cycle"/>
+    }
+    @empty {
+      <div>There's nothing to show.</div>
+    }
+  </div>
+
   <div class="entries">
     @for (entry of history; track entry.date) {
       <xfer2-xfer-data-entry class="history-entry" [entry]="entry"/>

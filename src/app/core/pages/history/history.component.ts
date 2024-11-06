@@ -10,6 +10,7 @@ import {getHistory} from "../../../shared/state/history/history.actions";
 import {AppState} from "../../../shared/state/app.state";
 import {OverallPerformanceComponent} from "../../../features/overall-performance/overall-performance.component";
 import {ScorecardCycle} from "../../../shared/interfaces/scorecard-cycle";
+import {ScorecardCycleComponent} from "../../../features/scorecard-cycle/scorecard-cycle.component";
 
 @Component({
   selector: 'xfer2-history',
@@ -18,7 +19,8 @@ import {ScorecardCycle} from "../../../shared/interfaces/scorecard-cycle";
     XferDataEntryComponent,
     AsyncPipe,
     NgIf,
-    OverallPerformanceComponent
+    OverallPerformanceComponent,
+    ScorecardCycleComponent
   ],
   templateUrl: './history.component.html',
   styleUrl: './history.component.scss'
