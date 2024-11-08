@@ -1,3 +1,10 @@
 <div class="cycle-container">
-  <h1>{{cycle.start.getTime()}} - {{cycle.end.getTime()}}</h1>
+  <div class="cycle-date">
+    {{formatDateString()}}
+  </div>
+
+  <div class="cycle-icons">
+    <img src="assets/not_passing.svg" width="48">
+    <img class="circle" src="assets/expand_circle_down.svg" width="48">
+  </div>
 </div>

@@ -2,20 +2,18 @@
   display: flex;
   flex-direction: column;
   padding: 15px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
-.entries {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+.cycles {
+  display: grid;
+  grid-template-columns: 1fr minmax(450px, 3fr) 1fr;
+  grid-template-rows: auto;
 }
 
-.history-entry {
+.cycle-card {
+  grid-column: 2;
   padding: 20px;
-  width: 30%;
-  min-width: 350px;
 }
 
 .performance {

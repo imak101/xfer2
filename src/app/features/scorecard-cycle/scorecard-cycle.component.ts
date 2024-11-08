@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, Input, AfterViewInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Input} from '@angular/core';
 import {ScorecardCycle} from "../../shared/interfaces/scorecard-cycle";
 
 @Component({
@@ -8,15 +8,18 @@ import {ScorecardCycle} from "../../shared/interfaces/scorecard-cycle";
   templateUrl: './scorecard-cycle.component.html',
   styleUrl: './scorecard-cycle.component.scss'
 })
-export class ScorecardCycleComponent implements AfterViewInit {
-  @Input({required: true}) cycle: ScorecardCycle = {start: null};
+export class ScorecardCycleComponent {
+  @Input({required: true}) cycle!: ScorecardCycle;
 
-  constructor(private cd: ChangeDetectorRef) {
+  formatDateString(): string {
+    // scorecard cycles always run from the 29th of current month until the 28th of the next. (unless leap year) february is only 28 days long. add check to adjust suffix on date.
+    const isMarch = this.cycle.start.getMonth() === 2;
+
+    const start = this.cycle.start.toLocaleDateString('en-us', {month: "long", day: "numeric"}) + (isMarch? "st" : "th");
+    const end = this.cycle.end.toLocaleDateString('en-us', {month: "long", day: "numeric"}) + "th";
+    return `${start} - ${end}`;
   }
 
-  ngAfterViewInit() {
-    this.cd.detectChanges();
+  constructor() {
   }
-
-
 }

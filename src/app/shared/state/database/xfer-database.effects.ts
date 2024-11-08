@@ -8,6 +8,8 @@ import {formValueChanged, getTodayFromDatabase} from "../today/today.actions";
 import {Store} from "@ngrx/store";
 import {AppState} from "../app.state";
 import {selectToday} from "../today/today.selectors";
+import {XferDataEntry} from "../../interfaces/xfer-data-entry";
+import {ScorecardCycle} from "../../interfaces/scorecard-cycle";
 
 @Injectable()
 export class XferDatabaseEffects {
@@ -25,7 +27,7 @@ export class XferDatabaseEffects {
         ofType(getHistory),
         switchMap(() =>
           from(this.database.getAllEntries()).pipe(
-            map((data) => getHistorySuccess({history: data.reverse()}))
+            map((data) => getHistorySuccess({history: this.parseEntriesIntoCycles(data).reverse()}))
           )
         )
       )
@@ -52,5 +54,41 @@ export class XferDatabaseEffects {
       ),
       {dispatch: false}
     );
+  }
+
+  // A scorecard cycle starts on the 29th of each month and runs until the 28th of the next
+  private parseEntriesIntoCycles(entries: XferDataEntry[]): ScorecardCycle[] {
+    const cycles: ScorecardCycle[] = [];
+
+    for (const entry of entries) {
+      const dateObj = new Date(entry.date.replaceAll('-', '/'));
+      let startDate: Date;
+      let endDate: Date;
+
+      if (dateObj.getDate() >= 29) { // entry is closer towards the beginning of the cycle (29th - 31st)
+        startDate = new Date(dateObj.getFullYear(), dateObj.getMonth(), 29);
+        endDate = new Date(dateObj.getFullYear(), dateObj.getMonth() + 1, 28);
+      } else { // entry is already in next month (1st - 28th)
+        startDate = new Date(dateObj.getFullYear(), dateObj.getMonth() - 1, 29);
+        endDate = new Date(dateObj.getFullYear(), dateObj.getMonth(), 28);
+      }
+
+      const cycleIndex = cycles.findIndex((cycle, index) => cycle.start.getTime() === startDate.getTime());
+      if (cycleIndex === -1) {
+        cycles.push(
+          {
+            start: startDate,
+            end: endDate,
+            entries: [entry]
+          }
+        );
+        continue;
+      }
+
+      cycles.at(cycleIndex)!.entries.push(entry);
+    }
+
+    console.log(cycles)
+    return cycles;
   }
 }

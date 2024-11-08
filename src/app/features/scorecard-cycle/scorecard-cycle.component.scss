@@ -1,0 +1,29 @@
+.cycle-container {
+  display: flex;
+  padding: 25px;
+  border-radius: 10px;
+  justify-content: space-between;
+
+  box-shadow: 0 4px 8px 0 rgb(86, 95, 113);
+  color: #131c2b;
+  background-color: #dae2f9;
+
+}
+
+.cycle-date {
+  text-align: left;
+  font-size: 32px;
+  align-self: center;
+}
+
+.cycle-icons {
+  padding: 8px;
+  //justify-self: end;
+  //align-self: end;
+}
+
+.cycle-icons .circle {
+  filter: brightness(0) saturate(100%) invert(8%) sepia(7%) saturate(4587%) hue-rotate(179deg) brightness(94%) contrast(93%);
+}
+
+

@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {XferDataEntry} from "../../shared/interfaces/xfer-data-entry";
+import {ScorecardCycle} from "../../shared/interfaces/scorecard-cycle";
 
 @Component({
   selector: 'xfer2-overall-performance',
@@ -9,20 +10,20 @@ import {XferDataEntry} from "../../shared/interfaces/xfer-data-entry";
   styleUrl: './overall-performance.component.scss'
 })
 export class OverallPerformanceComponent {
-  @Input() entries!: XferDataEntry[];
+  @Input() cycles!: ScorecardCycle[];
 
   getTotalCallsTaken(): number {
     let sum = 0;
-    for (let entry of this.entries) {
-      sum += entry.callsTaken;
+    for (let cycle of this.cycles) {
+      sum += cycle.entries.reduce((accumulator: number, entry: XferDataEntry) => accumulator + entry.callsTaken, 0);
     }
     return sum;
   }
 
   getTotalCallsXfer(): number {
     let sum = 0;
-    for (let entry of this.entries) {
-      sum += entry.callsXfer;
+    for (let cycle of this.cycles) {
+      sum += cycle.entries.reduce((accumulator: number, entry: XferDataEntry) => accumulator + entry.callsXfer, 0);
     }
     return sum;
   }
