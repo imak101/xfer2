@@ -18,12 +18,13 @@
 
 .cycle-icons {
   padding: 8px;
-  //justify-self: end;
-  //align-self: end;
 }
 
-.cycle-icons .circle {
+.circle {
   filter: brightness(0) saturate(100%) invert(8%) sepia(7%) saturate(4587%) hue-rotate(179deg) brightness(94%) contrast(93%);
 }
 
 
+.is-passing-icon {
+  filter: brightness(0) saturate(100%) invert(33%) sepia(11%) saturate(2793%) hue-rotate(173deg) brightness(97%) contrast(83%);
+}

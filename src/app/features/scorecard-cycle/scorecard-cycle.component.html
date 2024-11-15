@@ -4,7 +4,12 @@
   </div>
 
   <div class="cycle-icons">
-    <img src="assets/not_passing.svg" width="48">
+    @if (isPassing) {
+      <img class="is-passing-icon" src="assets/star.svg" width="48">
+    }
+    @else {
+      <img class="not-passing-result" src="assets/not_passing.svg" width="48">
+    }
     <img class="circle" src="assets/expand_circle_down.svg" width="48">
   </div>
 </div>

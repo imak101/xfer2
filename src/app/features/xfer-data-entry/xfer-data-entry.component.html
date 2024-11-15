@@ -13,11 +13,11 @@
 
   <div class="calculated-results">
     <div class="xfer-percent">
-      <span> {{ callsXferPercent() ?? 0 }}%<br>transferred</span>
+      <span> {{ xferPercent }}%<br>transferred</span>
     </div>
 
     <div class="is-passing">
-      @if ((callsXferPercent() ?? 100) <= 27.00) {
+      @if (isPassing) {
         <div class="is-passing-result">
           <img class="is-passing-icon" src="assets/star.svg" width="53" alt="is passing"/>
           <span class="is-passing-text">Above<br>LevelUp!</span>

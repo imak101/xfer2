@@ -39,6 +39,7 @@ export class XferDatabaseEffects {
         switchMap(() =>
           from(this.database.getAllEntries()).pipe(
             map((data) => getTodaySuccess({
+              // fixme: it's bad to assume that the last entry is always today. maybe compare dates?
               today: data.reverse()[0]
             }))
           )
