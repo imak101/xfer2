@@ -1,16 +1,26 @@
 import {ChangeDetectorRef, Component, Input} from '@angular/core';
 import {ScorecardCycle} from "../../shared/interfaces/scorecard-cycle";
 import {XferDataEntryMathService} from "../../shared/services/xfer-data-math/xfer-data-entry-math.service";
+import {XferDataEntryComponent} from "../xfer-data-entry/xfer-data-entry.component";
+import {NgIf, NgStyle} from "@angular/common";
+import {OverallPerformanceComponent} from "../overall-performance/overall-performance.component";
 
 @Component({
   selector: 'xfer2-scorecard-cycle',
   standalone: true,
-  imports: [],
+  imports: [
+    XferDataEntryComponent,
+    NgIf,
+    NgStyle,
+    OverallPerformanceComponent
+  ],
   templateUrl: './scorecard-cycle.component.html',
   styleUrl: './scorecard-cycle.component.scss'
 })
 export class ScorecardCycleComponent {
   @Input({required: true}) cycle!: ScorecardCycle;
+
+  showEntries: boolean = false;
 
   get isPassing(): boolean {
     return (this.xferMath.reduceToXferPercent(this.cycle.entries) ?? 100) <= 27.00;
@@ -24,6 +34,6 @@ export class ScorecardCycleComponent {
 
     const start = this.cycle.start.toLocaleDateString('en-us', {month: "long", day: "numeric"}) + (isMarch? "st" : "th");
     const end = this.cycle.end.toLocaleDateString('en-us', {month: "long", day: "numeric"}) + "th";
-    return `${start} to ${end}`;
+    return `${start} - ${end}`;
   }
 }

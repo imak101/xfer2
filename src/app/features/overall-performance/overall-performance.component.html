@@ -1,18 +1,30 @@
-<div class="performance-container">
+<div class="performance-container" [ngClass]="{'not-passing': !isPassing}">
   <div>
-    Total Calls Taken: {{this.getTotalCallsTaken()}}
+    @if (isOnlyOneCycle) {
+      Calls Taken: {{totalCallsTaken ?? 'Unknown'}}
+    } @else {
+      Total Calls Taken: {{totalCallsTaken ?? 'Unknown'}}
+    }
   </div>
   <div>
-    Total Transferred: {{this.getTotalCallsXfer()}}
+    @if (isOnlyOneCycle) {
+      Transferred: {{totalCallsXfer ?? 'Unknown'}}
+    } @else {
+      Total Transferred: {{totalCallsXfer ?? 'Unknown'}}
+    }
   </div>
   <div>
-    Overall Transfer Rate: {{this.getOverallXferRate() ?? 'Unknown'}}%
+    @if (isOnlyOneCycle) {
+      Transfer Rate: {{overallXferPercent ?? 'Unknown'}}%
+    } @else {
+      Overall Transfer Rate: {{overallXferPercent ?? 'Unknown'}}%
+    }
   </div>
-  <div class="icon">
-    @if ((getOverallXferRate() ?? 100) <= 27.00) {
+  <div class="icon" [ngClass]="{'not-passing': !isPassing}">
+    @if (isPassing) {
       <img class="is-passing-icon" src="assets/star.svg" width="60" alt="is passing"/>
     } @else {
-      <img src="assets/not_passing.svg" width="60" alt="not passing"/>
+      <img src="assets/not_passing.svg" width="60" height="60" alt="not passing"/>
     }
   </div>
 </div>

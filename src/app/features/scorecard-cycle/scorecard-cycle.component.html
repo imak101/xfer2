@@ -10,6 +10,16 @@
     @else {
       <img class="not-passing-result" src="assets/not_passing.svg" width="48">
     }
-    <img class="circle" src="assets/expand_circle_down.svg" width="48">
+    <img class="circle" src="assets/expand_circle_down.svg" width="48" [ngStyle]="{'rotate': showEntries ? '180deg' : '0deg'}" (mouseup)="showEntries = !showEntries">
   </div>
 </div>
+
+<div class="performance-container" *ngIf="showEntries">
+  <xfer2-overall-performance class="performance-card" [cycles]="[cycle]"/>
+</div>
+<div class="entry-accordion" *ngIf="showEntries">
+  @for (entry of cycle.entries; track entry.date) {
+    <xfer2-xfer-data-entry class="entry" [entry]="entry"/>
+  }
+</div>
+

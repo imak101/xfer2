@@ -22,7 +22,6 @@ export class XferDataEntryMathService {
       callsXfer: this.reduceToTotalCallsXfer(entries),
       callsTaken: this.reduceToTotalCallsTaken(entries),
       date: "null"
-      // date: new Date().toLocaleDateString( 'us-en', {month: "2-digit", day: "2-digit", year: "2-digit"})
     };
     return this.calculateXferPercent(payload);
   }

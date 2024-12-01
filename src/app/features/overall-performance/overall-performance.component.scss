@@ -13,3 +13,17 @@
   border-radius: 10px;
   padding: 20px;
 }
+
+.performance-container.not-passing {
+  background: #ba1a1a;
+  box-shadow: 0 3px 8px 0 rgba(186, 26, 26, 1);
+}
+
+.icon.not-passing {
+  align-self: center;
+  justify-self: center;
+  height: 60px;
+  border-radius: 100%;
+  padding: 7px;
+  background-color: #ffdad6;
+}

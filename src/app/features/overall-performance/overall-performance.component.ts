@@ -1,39 +1,40 @@
 import {Component, Input} from '@angular/core';
 import {XferDataEntry} from "../../shared/interfaces/xfer-data-entry";
 import {ScorecardCycle} from "../../shared/interfaces/scorecard-cycle";
+import {XferDataEntryMathService} from "../../shared/services/xfer-data-math/xfer-data-entry-math.service";
+import {NgClass} from "@angular/common";
 
 @Component({
   selector: 'xfer2-overall-performance',
   standalone: true,
-  imports: [],
+  imports: [
+    NgClass
+  ],
   templateUrl: './overall-performance.component.html',
   styleUrl: './overall-performance.component.scss'
 })
 export class OverallPerformanceComponent {
   @Input() cycles!: ScorecardCycle[];
 
-  getTotalCallsTaken(): number {
-    let sum = 0;
-    for (let cycle of this.cycles) {
-      sum += cycle.entries.reduce((accumulator: number, entry: XferDataEntry) => accumulator + entry.callsTaken, 0);
-    }
-    return sum;
+  constructor(private xferMath: XferDataEntryMathService) {}
+
+  get isPassing(): boolean {
+    return (this.overallXferPercent ?? 100) <= 27.00;
   }
 
-  getTotalCallsXfer(): number {
-    let sum = 0;
-    for (let cycle of this.cycles) {
-      sum += cycle.entries.reduce((accumulator: number, entry: XferDataEntry) => accumulator + entry.callsXfer, 0);
-    }
-    return sum;
+  get isOnlyOneCycle(): boolean {
+    return this.cycles.length === 1;
   }
 
-  getOverallXferRate(): number | null {
-    const percent = (this.getTotalCallsXfer() / this.getTotalCallsTaken()) * 100;
-    if (!Number.isFinite(percent)) {
-      return null;
-    }
+  get totalCallsTaken(): number | null {
+    return this.xferMath.reduceCyclesTo("callsTaken", this.cycles);
+  }
 
-    return Math.round(percent * 100) / 100;
+  get totalCallsXfer(): number | null{
+    return this.xferMath.reduceCyclesTo("callsXfer", this.cycles);
+  }
+
+  get overallXferPercent(): number | null {
+    return this.xferMath.reduceCyclesTo("xferPercent", this.cycles);
   }
 }
