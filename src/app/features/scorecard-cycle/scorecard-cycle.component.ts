@@ -32,8 +32,10 @@ export class ScorecardCycleComponent {
     // scorecard cycles always run from the 29th of current month until the 28th of the next. (unless leap year) february is only 28 days long. add check to adjust suffix on date.
     const isMarch = this.cycle.start.getMonth() === 2;
 
+    const isCurrentYear = this.cycle.end.getFullYear() === new Date().getFullYear();
+
     const start = this.cycle.start.toLocaleDateString('en-us', {month: "long", day: "numeric"}) + (isMarch? "st" : "th");
     const end = this.cycle.end.toLocaleDateString('en-us', {month: "long", day: "numeric"}) + "th";
-    return `${start} - ${end}`;
+    return `${start} - ${end}${isCurrentYear? "" : ", " + this.cycle.end.getFullYear()}`;
   }
 }

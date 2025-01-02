@@ -67,7 +67,6 @@ export class HistoryComponent  {
       cycles.at(cycleIndex)!.entries.push(entry);
     }
 
-    console.log(cycles)
     return cycles;
   }
 }

@@ -81,6 +81,7 @@ p,
   text-align: center;
   padding-top: 12px;
   font-size: 8pt;
+  filter: brightness(0) saturate(100%) invert(10%) sepia(60%) saturate(1849%) hue-rotate(190deg) brightness(92%) contrast(108%);
 }
 
 .version {

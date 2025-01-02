@@ -39,8 +39,8 @@ export class XferDatabaseEffects {
         switchMap(() =>
           from(this.database.getAllEntries()).pipe(
             map((data) => getTodaySuccess({
-              // fixme: it's bad to assume that the last entry is always today. maybe compare dates?
-              today: data.reverse()[0]
+              // returns 0 as index if entry is not found for today. a default value is used downstream if there is no server data for today
+              today: data[this.getIndexForTodaysEntry(data)]
             }))
           )
         )
@@ -55,6 +55,12 @@ export class XferDatabaseEffects {
       ),
       {dispatch: false}
     );
+  }
+
+  private getIndexForTodaysEntry(entries: XferDataEntry[]): number {
+    const todayStr = new Date().toLocaleDateString('en-us', {month: "2-digit", day: "2-digit", year: "2-digit"}).replaceAll('/', '-');
+    const index = entries.findIndex((value) => value.date === todayStr);
+    return index === -1? 0 : index;
   }
 
   // A scorecard cycle starts on the 29th of each month and runs until the 28th of the next
@@ -89,7 +95,7 @@ export class XferDatabaseEffects {
       cycles.at(cycleIndex)!.entries.push(entry);
     }
 
-    console.log(cycles)
+    cycles.sort((a, b) => a.start.getTime() - b.start.getTime());
     return cycles;
   }
 }
