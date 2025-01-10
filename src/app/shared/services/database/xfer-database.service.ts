@@ -7,35 +7,51 @@ import {XferLocalStorageService} from "../local-storage/xfer-local-storage.servi
 @Injectable({
   providedIn: 'root'
 })
-export class XferDatabaseService {
-  // private path = "http://127.0.0.1:5001/groupscrobbler/us-central1/xfer2";
-  private path = "https://xfer2-tbxfifckza-uc.a.run.app";
-
+export class XferDatabaseService {/
   constructor(private http: HttpClient, private xferLocalStorage: XferLocalStorageService) { }
 
+  private defaultEntry(): XferDataEntry {
+    return {
+      date: new Date().toLocaleDateString(),
+      callsXfer: 0,
+      callsTaken: 0,
+    }
+  }
+
+  private convertLocalEntries(): object[] {
+    const json = JSON.parse(localStorage.getItem("dataTest") ?? JSON.stringify(this.defaultEntry()))
+    const keys = Object.keys(json);
+
+    const output = [];
+    for (let key of keys) {
+      output.push({
+        date: key,
+        callsXfer: json[key].callsXfer,
+        callsTaken: json[key].callsTaken,
+      });
+    }
+    return output;
+  }
+
   getAllEntries(): Observable<XferDataEntry[]> {
-    return this.http.get(this.path, {
-      params: {user: this.xferLocalStorage.getUsername() ?? "null"}
+    return this.http.get("", {
+      responseType: "text",
     }).pipe(
-      map((data) => {
-        return data as XferDataEntry[];
+      map(() => {
+        return this.convertLocalEntries() as XferDataEntry[]
       })
     );
   }
 
   saveEntry(entry: XferDataEntry) {
-    const payload = {
-      [entry.date]: {
-        callsTaken: entry.callsTaken,
-        callsXfer: entry.callsXfer
-      }
-    };
+    const pastData = localStorage.getItem("dataTest") ?? "{}"
+    const json = JSON.parse(pastData);
+    json[entry.date.replaceAll('/', '-')] = {
+      callsTaken: entry.callsTaken,
+      callsXfer: entry.callsXfer
+    }
+    localStorage.setItem("dataTest", JSON.stringify(json));
 
-    return this.http.post(this.path,
-    payload,
-    {
-      params: {user: this.xferLocalStorage.getUsername() ?? "null"},
-      headers: {"Content-Type": "application/json"}
-    });
+    return new Observable()
   }
 }
