@@ -1,37 +1,21 @@
-<dialog (cancel)="userCanceledForm()" class="username-dialog" #usernameDialog>
+<dialog class="username-dialog" #usernameDialog>
   <div class="title">
-    Welcome to Transfer Tracker!
+    Transfer Tracker
   </div>
   <div class="version">
-    v2.2.0c
+    {{version}}
   </div>
-  <form method="dialog" (submit)="signInButtonPressed()" class="username-form" [formGroup]="usernameForm">
-    <input class="username-input" [ngClass]="{'input-error': usernameInput.invalid}" formControlName="username" id="username" type="text" placeholder="Enter a username..." required>
-    <div class="error-message" *ngIf="usernameInput.invalid">
-      Must be more than 4 characters!
-    </div>
-
-    <div class="dialog-buttons">
-
-      <!--mark type as button because we don't want the close button to submit-->
-      <button class="dialog-button" type="button" (mouseup)="usernameDialog.close()" [hidden]="hideCloseButton">Close</button>
-      <button class="dialog-button" [disabled]="usernameInput.invalid" [ngClass]="{'disabled': usernameInput.invalid}">Sign in</button>
-    </div>
-
-<!--    <div class="contact-info">-->
-<!--      Contact Me-->
-<!--      <img src="assets/keyboard_arrow_down.svg" width="15">-->
-<!--    </div>-->
-    <div class="contact-info">
-      Made by Michael Trenkler <br>
-      <a href="mailto:michael.trenkler1@protonmail.com">
-        michael.trenkler1&#64;protonmail.com <br>
-      </a>
-    </div>
-  </form>
+  <div class="contact-me">
+    <a href="mailto:michael.trenkler1@protonmail.com">
+      Contact Me
+    </a>
+  </div>
+   <div class="buttons">
+     <button class="dialog-button" type="button" (mouseup)="usernameDialog.close()">Close</button>
+   </div>
 </dialog>
 
-<div [title]="getTooltip()">
-  <img class="user-icon" src="assets/person.svg" alt="user" (mouseup)="usernameDialog.showModal()">
+<div [title]="version">
+  <img class="user-icon" src="assets/info.svg" alt="user" (mouseup)="usernameDialog.showModal()">
 </div>
 

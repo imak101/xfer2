@@ -11,6 +11,7 @@
 }
 
 .username-dialog {
+  padding: 30px 60px;
   box-shadow: 0 2px 2px 0 rgba(243, 243, 250, 1);
   scale: 1.3;
   border: none;
@@ -41,16 +42,13 @@ p,
   border-width: 2px;
 }
 
-.username-form {
-  display: grid;
-}
 
-.dialog-buttons {
-  display: flex;
-  padding-top: 10px;
-  gap: 10px;
-  margin-left: auto;
-}
+//.dialog-buttons {
+//  display: flex;
+//  padding-top: 10px;
+//  gap: 10px;
+//  margin-left: auto;
+//}
 
 .dialog-button {
   box-shadow: 0 1px 3px 0 rgba(68, 71, 78, 1);
@@ -60,6 +58,13 @@ p,
   color: #001b3e;
   background-color: #d6e3ff;
   cursor: pointer;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
 
 .disabled {
@@ -76,17 +81,22 @@ p,
   color: #ba1a1a ;
 }
 
-.contact-info {
-  justify-self: center;
-  text-align: center;
-  padding-top: 12px;
-  font-size: 8pt;
+.contact-me {
+  display: flex;
+
+  align-content: center;
+  justify-content: center;
+
+  //padding-top: 12px;
+  font-size: 12px;
   filter: brightness(0) saturate(100%) invert(10%) sepia(60%) saturate(1849%) hue-rotate(190deg) brightness(92%) contrast(108%);
 }
 
+
+
 .version {
-  justify-self: left;
-  text-align: left;
-  font-size: 8pt;
+  justify-self: center;
+  text-align: center;
+  font-size: 12px;
   padding-bottom: 8px;
 }
