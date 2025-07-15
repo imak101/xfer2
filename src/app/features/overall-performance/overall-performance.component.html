@@ -15,9 +15,9 @@
   </div>
   <div>
     @if (isOnlyOneCycle) {
-      Transfer Rate: {{overallXferPercent ?? 'Unknown'}}%
+      Transfer Rate: {{overallXferPercent ?? '0'}}%
     } @else {
-      Overall Transfer Rate: {{overallXferPercent ?? 'Unknown'}}%
+      Overall Transfer Rate: {{overallXferPercent ?? '0'}}%
     }
   </div>
   <div class="icon" [ngClass]="{'not-passing': !isPassing}">

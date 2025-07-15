@@ -27,46 +27,10 @@ import {ScorecardCycleComponent} from "../../../features/scorecard-cycle/scoreca
 })
 export class HistoryComponent  {
   history$: Observable<ScorecardCycle[]>;
-  // entries: XferDataEntry[] | null = null;
-  // cycles: ScorecardCycle[] | null = null;
 
-  constructor(private store: Store<AppState>, private cd: ChangeDetectorRef) {
+  constructor(private store: Store<AppState>) {
     // get history from database
     this.history$ = this.store.select(selectAllHistory);
     this.store.dispatch(getHistory());
-  }
-
-  parseEntriesIntoCycles(entries: XferDataEntry[]): ScorecardCycle[] {
-    const cycles: ScorecardCycle[] = [];
-
-    for (const entry of entries) {
-      const dateObj = new Date(entry.date.replaceAll('-', '/'));
-      let startDate: Date;
-      let endDate: Date;
-
-      if (dateObj.getDate() >= 29) { // entry is closer towards the beginning of the cycle (29th - 31st)
-        startDate = new Date(dateObj.getFullYear(), dateObj.getMonth(), 29);
-        endDate = new Date(dateObj.getFullYear(), dateObj.getMonth() + 1, 28);
-      } else { // entry is already in next month (1st - 28th)
-        startDate = new Date(dateObj.getFullYear(), dateObj.getMonth() - 1, 29);
-        endDate = new Date(dateObj.getFullYear(), dateObj.getMonth(), 28);
-      }
-
-      const cycleIndex = cycles.findIndex((cycle, index) => cycle.start.getTime() === startDate.getTime());
-      if (cycleIndex === -1) {
-        cycles.push(
-          {
-            start: startDate,
-            end: endDate,
-            entries: [entry]
-          }
-        );
-        continue;
-      }
-
-      cycles.at(cycleIndex)!.entries.push(entry);
-    }
-
-    return cycles;
   }
 }

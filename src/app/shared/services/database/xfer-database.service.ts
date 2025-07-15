@@ -10,16 +10,17 @@ export class XferDatabaseService {
   constructor(private http: HttpClient) { }
   private path = "data";
 
-  private defaultEntry(): XferDataEntry {
+  private defaultLocalEntry(): Object {
     return {
-      date: new Date().toLocaleDateString(),
-      callsXfer: 0,
-      callsTaken: 0,
+      [new Date().toLocaleDateString()]: {
+        callsXfer: 0,
+        callsTaken: 0,
+      }
     };
   }
 
   private convertLocalEntries(): object[] {
-    const json = JSON.parse(localStorage.getItem(this.path) ?? JSON.stringify(this.defaultEntry()));
+    const json = JSON.parse(localStorage.getItem(this.path) ?? JSON.stringify(this.defaultLocalEntry()));
     const keys = Object.keys(json);
 
     const output = [];
